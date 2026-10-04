@@ -1,0 +1,833 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>For you 💗</title><style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: Georgia, serif;
+    background: radial-gradient(circle at top, #54245f, #160b25 75%);
+    color: white;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: .2;
+        transform: scale(.6);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 18px;
+    position: relative;
+    z-index: 2;
+}
+
+.card {
+    width: 100%;
+    max-width: 650px;
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.25);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5),
+        0 0 40px rgba(255,120,210,.08);
+
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* PADLOCK */
+
+.lock {
+    font-size: 75px;
+    margin-bottom: 10px;
+    animation: lockFloat 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(255,160,220,.5));
+}
+
+@keyframes lockFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd6f6,
+            #ff9edb,
+            white
+        );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    color: #f5dced;
+    font-size: 15px;
+    margin-bottom: 22px;
+}
+
+/* PASSWORD */
+
+.display {
+    width: 100%;
+    height: 55px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    background: rgba(0,0,0,.25);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+    letter-spacing: 7px;
+
+    margin-bottom: 18px;
+
+    color: #ffd5ee;
+
+    box-shadow:
+        inset 0 0 15px rgba(0,0,0,.2);
+}
+
+/* KEYPAD */
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.key {
+    height: 55px;
+
+    border: none;
+    border-radius: 17px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: #4b1745;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe0f3,
+            #ff9edb
+        );
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+    box-shadow:
+        0 5px 15px rgba(255,100,190,.2);
+}
+
+.key:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 20px rgba(255,150,220,.6);
+}
+
+.key:active {
+    transform: scale(.90);
+}
+
+.clear {
+    background: rgba(255,255,255,.15);
+    color: white;
+}
+
+.enter {
+    background:
+        linear-gradient(
+            135deg,
+            #ffb9e6,
+            #ff69c7
+        );
+}
+
+/* ERROR */
+
+.error {
+    height: 25px;
+    margin-top: 12px;
+    color: #ffb4d8;
+    font-size: 14px;
+    opacity: 0;
+    transition: .3s;
+}
+
+.error.show {
+    opacity: 1;
+    animation: shake .35s;
+}
+
+@keyframes shake {
+    0%,100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-7px);
+    }
+
+    75% {
+        transform: translateX(7px);
+    }
+}
+
+/* MUSIC SCREEN */
+
+#musicScreen {
+    display: none;
+    animation: messageIn 1s ease;
+}
+
+.music-icon {
+    font-size: 70px;
+    margin-bottom: 15px;
+
+    animation: musicFloat 2s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 20px rgba(255,150,220,.7));
+}
+
+@keyframes musicFloat {
+    0%,100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+.music-title {
+    font-size: 27px;
+    margin-bottom: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd6f6,
+            #ff9edb,
+            white
+        );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.music-subtitle {
+    color: #f5dced;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* PLAY BUTTON */
+
+.play-button {
+    border: none;
+    border-radius: 50px;
+
+    padding: 15px 32px;
+
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-weight: bold;
+
+    color: #4b1745;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe0f3,
+            #ff75ca
+        );
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 25px rgba(255,130,210,.45);
+
+    transition: .25s;
+}
+
+.play-button:hover {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 0 35px rgba(255,160,220,.8);
+}
+
+.play-button:active {
+    transform: scale(.95);
+}
+
+/* MESSAGE */
+
+.message {
+    display: none;
+    text-align: left;
+    margin-top: 10px;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #fff0fa;
+}
+
+.message.show {
+    display: block;
+    animation: messageIn 1.2s ease;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message p {
+    margin-bottom: 18px;
+}
+
+#typedMessage {
+    white-space: pre-wrap;
+}
+
+.signature {
+    text-align: center;
+    margin-top: 25px;
+    color: #ffb9e4;
+    font-size: 18px;
+}
+
+/* FLOATING HEARTS */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+
+    animation:
+        floatUp linear forwards;
+
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:480px) {
+
+    .card {
+        padding: 30px 20px;
+    }
+
+    .lock {
+        font-size: 65px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .message {
+        font-size: 15.5px;
+        line-height: 1.75;
+    }
+
+    .key {
+        height: 52px;
+    }
+}
+</style></head><body><div class="stars" id="stars"></div><div class="container"><div class="card"><!-- PASSWORD SCREEN --><div id="lockScreen"><div class="lock">
+    🔐
+</div>
+
+<h1>
+    A Little Something 💗
+</h1>
+
+<div class="subtitle">
+    December holds the key 🗝️ 🎂
+</div>
+
+<div class="display" id="display">
+    • • • •
+</div>
+
+<div class="keypad">
+
+    <button class="key" onclick="press(1)">1</button>
+    <button class="key" onclick="press(2)">2</button>
+    <button class="key" onclick="press(3)">3</button>
+
+    <button class="key" onclick="press(4)">4</button>
+    <button class="key" onclick="press(5)">5</button>
+    <button class="key" onclick="press(6)">6</button>
+
+    <button class="key" onclick="press(7)">7</button>
+    <button class="key" onclick="press(8)">8</button>
+    <button class="key" onclick="press(9)">9</button>
+
+    <button class="key clear" onclick="clearCode()">⌫</button>
+    <button class="key" onclick="press(0)">0</button>
+    <button class="key enter" onclick="checkCode()">✓</button>
+
+</div>
+
+<div class="error" id="error">
+    Incorrect code... try again 💔
+</div>
+
+</div><!-- MUSIC SCREEN --><div id="musicScreen"><div class="music-icon">
+    🎵
+</div>
+
+<div class="music-title">
+    Before you read...
+</div>
+
+<div class="music-subtitle">
+    Play the music first.<br>
+    Then take your time reading this.
+</div>
+
+<button class="play-button" onclick="startMessage()">
+    ▶ Play Music & Read
+</button>
+
+</div><!-- AUDIO --><audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio><!-- MESSAGE --><div class="message" id="message"><div id="typedMessage"></div>
+
+</div></div>
+</div><script>
+
+/* PASSWORD */
+
+const correctPassword = "1230";
+
+let enteredCode = "";
+
+
+/* NUMBER INPUT */
+
+function press(number) {
+
+    if (enteredCode.length < 4) {
+
+        enteredCode += number;
+
+        updateDisplay();
+
+    }
+}
+
+
+/* UPDATE DISPLAY */
+
+function updateDisplay() {
+
+    const display =
+        document.getElementById("display");
+
+    if (enteredCode.length === 0) {
+
+        display.innerHTML =
+            "• • • •";
+
+    } else {
+
+        display.innerHTML =
+            "● ".repeat(enteredCode.length);
+
+    }
+}
+
+
+/* CLEAR */
+
+function clearCode() {
+
+    enteredCode = "";
+
+    updateDisplay();
+
+    document
+        .getElementById("error")
+        .classList.remove("show");
+}
+
+
+/* CHECK PASSWORD */
+
+function checkCode() {
+
+    const error =
+        document.getElementById("error");
+
+    const lockScreen =
+        document.getElementById("lockScreen");
+
+    const musicScreen =
+        document.getElementById("musicScreen");
+
+
+    if (enteredCode === correctPassword) {
+
+        error.classList.remove("show");
+
+        lockScreen.style.transition =
+            "opacity .7s ease, transform .7s ease";
+
+        lockScreen.style.opacity = "0";
+
+        lockScreen.style.transform =
+            "translateY(-20px) scale(.95)";
+
+
+        setTimeout(() => {
+
+            lockScreen.style.display = "none";
+
+            musicScreen.style.display = "block";
+
+        }, 700);
+
+
+    } else {
+
+        error.classList.add("show");
+
+        enteredCode = "";
+
+        updateDisplay();
+
+    }
+}
+
+
+/* START MUSIC + MESSAGE */
+
+function startMessage() {
+
+    const music =
+        document.getElementById("music");
+
+    const musicScreen =
+        document.getElementById("musicScreen");
+
+    const message =
+        document.getElementById("message");
+
+    music.play().catch(error => {
+
+        console.log(
+            "Music could not start:",
+            error
+        );
+
+    });
+
+
+    musicScreen.style.transition =
+        "opacity .7s ease, transform .7s ease";
+
+    musicScreen.style.opacity = "0";
+
+    musicScreen.style.transform =
+        "translateY(-20px) scale(.95)";
+
+
+    setTimeout(() => {
+
+        musicScreen.style.display = "none";
+
+        message.classList.add("show");
+
+        typeMessage();
+
+    }, 700);
+}
+
+
+/* MESSAGE */
+
+const messageText = `Helloo.
+
+Probably hindi mo na ako kilala, pero much better yung hindi mo na ako kilala. HAHAHAHA.
+
+Pero may gusto lang akong sabihin sa'yo. I don't even know if you still need to read this.
+
+Since I already started it, continue ko na lang.
+
+I don't even know if I still have the right to say all of this, pero I just wanted to say it kahit dito na lang, hindi na sa personal.
+
+First of all, I'm really sorry.
+
+Sorry kasi hindi nagtagal yung relationship natin. Sorry if hindi siya nag-work, tama yung thoughts ko, diba?
+
+Ang bilis ng lahat, noh? Parang kailan lang, we were talking, getting to know each other, making memories. Then suddenly, it ended.
+
+I know you tried to hold on. You gave us chances. Pero ako yung pumili na i-end na lang.
+
+I know you wanted us to cool off, and iba ang gusto ng parents mo. Maybe part of you was still hoping na magiging okay pa tayo after everything. Pero instead of choosing to wait, I chose to completely walk away.
+
+I deleted my account, cut off our connection, and disappeared from your life.
+
+It's for your own good naman eh.
+
+I knew I hurt you that time, and I know my sorry can't undo what happened. I'm sorry for doing it that way. I know it wasn't easy, and maybe you deserved an explanation, but I didn't give you anything—just seen.
+
+I'm also sorry for giving you mixed signals or false hope before. I probably confused you more than I realized, and I'm genuinely sorry for that.
+You didn't deserve to be left wondering kung ano ba talaga yung gusto ko.
+
+The truth is, you weren't the problem. You tried to make things work, and I saw that. Pero habang tumatagal, our relationship getting complicated lalo na sa parents mo. And i still had a lot to figure out about myself, and I didn't know how to communicate what I felt. Sometimes I didn't even understand myself, so I didn't know how to explain myself to you.
+
+With everything happening around us, I felt that ending things was the decision I needed to make. Maybe it wasn't what you wanted, but it was what I chose because ayaw kitang ma-stuck sa'kin. I didn't want you to constantly wonder kung okay pa ba tayo or kung may kailangan ka bang ayusin para sa'kin.
+
+And I want you to know this: you were never the reason I left. You weren't lacking anything. There was no one else, and you didn't need to become someone different just to make me stay. I simply wasn't ready to be the person you needed.
+
+I'm sorry for disappearing, for the mixed signals, false hope and for making you chase me for answers. I wish I had communicated better and handled everything more honestly. Instead of facing my fears, I ran. That was my mistake, and I take responsibility for it.
+
+Thank you for trying. Thank you for fighting for us, for your patience, the conversations, the memories, and even the little ordinary moments. Kahit hindi tayo nagtagal, hindi ibig sabihin na walang meaning sa'kin yung mga nangyari. I genuinely appreciated having you as part of my life.
+
+I also hope you never blame yourself for what happened. You did what you could. Please don't carry the question of whether you were enough. You were. Sometimes things end simply because two people aren't in the same place anymore.
+
+And honestly, I'm glad we're both doing okay now. We're living our own lives, growing separately, and somehow, we're fine. I don't want to disturb the peace you've found. I just hope you continue doing well, take care of yourself, and find people who make you feel safe, valued, and at peace.
+
+And please, bawasan mo rin yung alat at tamis. Hindi dahil kailangan mong baguhin sarili mo, pero para maalagaan mo health mo. Para na rin hindi maging round cheeks mo. HAHAHAHAHA. Ito talaga yung pinaka-importanteng part ng letter.
+
+Also, naaalala mo ba yung time na sinabi kong nanaginip ako about sa'yo? Yung sinabi kong naka-skirt ka kahit hindi ka naman nagsusuot ng skirt? HAHAHAHA. Tapos random day nitong September, nakita talaga kitang naka-skirt. Hindi ko agad napansin na ikaw pala, pero eventually late ko lng na realized.
+
+Ang random lang na yung sinabi ko dati as a dream, somehow nangyari talaga. Life is weird. HAHAHAHA. Probably coincidence, but still funny.
+
+Maybe we're better this way. Maybe we're meant to continue our lives separately, meet different people, experience different things, and become different versions of ourselves. Not everyone we care about is meant to stay forever. Some people are only meant to be part of a certain chapter.
+
+And I'm thankful you were part of mine.
+
+I don't need another chance, another conversation, or even your forgiveness. I just wanted to apologize properly and finally say the things I couldn't say before. No hidden meaning, no "maybe someday," and no expectation that you'll reply.
+
+Makinig ka na lang sa mga kaibigan mo. Hindi ako nagde-defend ng side ko. Tama sila. Mali ako. HAHAHAHA. Wala na akong appeal dun.
+
+I hope someday you meet someone who's ready to stay, communicate, reassure you, and make love feel peaceful—not perfect, just peaceful. But don't rush. Grow, enjoy your life, and don't settle just because you're afraid of being alone.
+
+I don't know what the future holds. Maybe we'll never talk again. Maybe someday we'll randomly see each other and just smile. Maybe we'll become complete strangers. And that's okay.
+
+I hope that if you ever remember me, you don't remember me only as the person who hurt you. I hope you also remember that there was a time when I genuinely cared about you, even if I didn't know how to show it properly.
+
+I'm sorry it didn't last, but I'm thankful it happened.
+
+So this time, I'll say goodbye properly and thank you for everything.
+
+Take care always. I genuinely wish you the best.
+
+No need to reply. I just wanted to say it.
+
+I'm sorry.
+Thank you.
+And goodbye.
+
+From someone you probably don't know anymore`;
+
+
+/* TYPING FUNCTION */
+
+function typeMessage() {
+
+    const typedMessage =
+        document.getElementById("typedMessage");
+
+    let index = 0;
+
+    const typingSpeed = 45;
+
+
+    function type() {
+
+        if (index < messageText.length) {
+
+            typedMessage.textContent +=
+                messageText.charAt(index);
+
+            index++;
+
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth"
+            });
+
+            setTimeout(type, typingSpeed);
+
+        }
+
+    }
+
+    type();
+}
+
+
+/* CREATE STARS */
+
+const stars =
+    document.getElementById("stars");
+
+for (let i = 0; i < 100; i++) {
+
+    const star =
+        document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* FLOATING HEARTS */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts = [
+        "✨",
+        "🌑",
+        "💫",
+        "❤️‍🩹"
+    ];
+
+    heart.innerHTML =
+        hearts[
+            Math.floor(
+                Math.random() * hearts.length
+            )
+        ];
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 20) + "px";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 10000);
+}
+
+
+setInterval(createHeart, 700);
+
+</script></body>
+</html>
